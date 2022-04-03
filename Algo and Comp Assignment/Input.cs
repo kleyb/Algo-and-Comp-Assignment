@@ -9,7 +9,7 @@ using System.IO;
 class Input
 {
 
-     public int[] ReadFiles()
+     public double[] ReadFiles()
      {
         Console.WriteLine("Please indicate the name of the file and extersion (eg 'text.txt'): ");
         string fileName = Console.ReadLine();
@@ -18,7 +18,7 @@ class Input
         
         string[] arrayAsText = File.ReadAllLines(path + fileName);
         //Convert array to Int    
-        int[] array = Array.ConvertAll(arrayAsText,s => int.TryParse(s,out var x) ? x :-1 );
+        double[] array = Array.ConvertAll(arrayAsText,s => double.TryParse(s,out var x) ? x :-1 );
         return array;
     }
 }       
