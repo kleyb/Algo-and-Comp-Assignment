@@ -3,6 +3,7 @@
 Console.WriteLine("Welcome to the Shares Searching and Sorting Application");
 
 Input input = new Input();
+input.GetPath();
 double[] share1 = input.ReadFiles();
 double[] share2 = input.ReadFiles();
 double[] share3 = input.ReadFiles();
@@ -16,12 +17,6 @@ sorting.QuickSort(share1);
 sorting.QuickSort(share2);
 sorting.QuickSort(share3);
 
-for (int i = 0; i < share1.Length; i++)
-{
-    Console.WriteLine(share1);
-    Console.WriteLine(share2);
-    Console.WriteLine(share3);
-}
 
 Console.WriteLine("Please select one of the options: ");
 Console.WriteLine(" 1 for sorting in acesding order");
