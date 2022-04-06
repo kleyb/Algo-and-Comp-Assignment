@@ -13,9 +13,13 @@ Console.WriteLine("This program will sort your arrays in acesding and descending
 Console.ReadKey();
 
 Sorting sorting = new Sorting();
+//Sorts in Acending order
 sorting.QuickSort(share1);
 sorting.QuickSort(share2);
 sorting.QuickSort(share3);
+
+//Sorts in descending order
+share1 = sorting.Sort(share1);
 
 
 Console.WriteLine("Please select one of the options: ");
