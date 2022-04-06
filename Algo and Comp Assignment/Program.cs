@@ -17,6 +17,16 @@ sorting.QuickSort(share1);
 sorting.QuickSort(share2);
 sorting.QuickSort(share3);
 
+foreach (var share in share1)
+{
+    Console.Write(share);
+}
+
+share1 = sorting.Sort(share1);
+foreach (var item in share1)
+{
+    Console.Write("{0} ,",item);
+}
 
 Console.WriteLine("Please select one of the options: ");
 Console.WriteLine(" 1 for sorting in acesding order");
