@@ -47,74 +47,8 @@ class Sorting
         // Call the fuction recursively with new parameters , in effect splits the array for sorting
         if (start < j) QuickSort(data, start, j);
         if (i < end) QuickSort(data, i, end);
+
+     
     }
-
-    // Sort Array in Descending Order
-    public double[] Sort(double[] array)
-    {
-        int low = 0;
-        int high = array.Length;
-
-        int n = high - low + 1;
-        int middle = low + n / 2;
-
-        List<double> left = new List<double>();
-        List<double> right = new List<double>();
-
-
-        if (array.Length <= 1) return array;
-
-        for (int i = 0; i < high; i++)
-        {
-            if (i < middle)
-            {
-                left.Add(array[i]);
-            }
-            else
-            {
-                right.Add(array[i]);
-
-            }
-        }
-        Console.WriteLine();
-        left = Sort(left.ToArray()).ToList();
-
-
-        right = Sort(right.ToArray()).ToList();
-
-        array = Merge(left, right);
-        return array;
-
-    }
-    private static double[] Merge(List<double> left, List<double> right)
-    {
-        List<double> result = new List<double>();
-
-        while (left.Any() && right.Any())
-        {
-            if (left.First() <= right.First())
-            {
-                result.Add(right.First());
-                right.Remove(right.First());
-            }
-            else
-            {
-                result.Add(left.First());
-                left.Remove(left.First());
-            }
-        }
-        while (left.Any())
-        {
-            result.Add(left.First());
-            left.Remove(left.First());
-        }
-        while (right.Any())
-        {
-            result.Add(right.First());
-            right.Remove(right.First());
-        }
-
-        return result.ToArray();
-    }
-
 }
+
