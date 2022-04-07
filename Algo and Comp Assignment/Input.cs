@@ -13,14 +13,14 @@ class Input
     //Get the path from the user and passes it to Path
     public void GetPath()
     {
-        Console.WriteLine(@"Please indicate the path to the files: (eg 'C:\Users\kleybson\Download' ) ");
+        Console.WriteLine(@"Please indicate the path to the file: (eg 'C:\Users\kleybson\Download' ) ");
         string path = Console.ReadLine();
         this.Path = path;
     }
 
      public double[] ReadFiles()
      {
-        //string path = Console.ReadLine();
+        GetPath();
         Console.WriteLine("Please indicate the name of the files and extersions (eg 'text.txt'): ");
         string fileName = Console.ReadLine();
         
