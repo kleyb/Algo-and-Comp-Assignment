@@ -35,7 +35,8 @@ SortingAndDisplaying(share_1_256);
 //SortingAndDisplaying(share_2_256);
 //SortingAndDisplaying(share_3_256);
 
-share_1_256.SearchLinear();
+//share_1_256.SearchLinear();
+share_1_256.SearchBinary();
 
 Console.WriteLine("Please select one of the options: ");
 Console.WriteLine(" 1 for sorting in acesding order");
