@@ -156,40 +156,58 @@ class Arrays
                     Console.WriteLine("There are {0} occurences of the value {1} , starting at index {2}", numberOfOccurences, target, left);
                 }
             }
-
+            // Performs the Binary search with finding the closest value if value in not outside the borders (range) of the Array
             static int BinarySearch(double[] array, int left, int right, double target, bool flag, int result)
-            {
+            {   // if the right pointer is greater than the left then returns the result 
                 if (right < left) return result;
 
+                // finds the middle point of the array
                 int middle = (left + right) / 2;
 
+                //if the array middle is equal to target , then it has found the value it was looking for 
+                //eg. an array [1,2,3,4,5] the middle point will be 3 , if 3 is what is being looking for , if will be found
                 if (array[middle] == target)
                 {
+                    // stores the middle index into result
                     result = middle;
+                    // Now if will split the array in half , to find all occurences 
+                    // the first portion will look into the leftmost location
+                    //while the else part will look inot the rightmost location of the value
                     if (flag)
                     {
+                        //it will keep running until if finds the leftmost then it will return
                         result = BinarySearch(array, left, middle - 1, target, flag, result);
                         return result;
                     }
                     else
-                    {
+                    {   //runs until if finds the rightmost location then returns 
                         return BinarySearch(array, middle + 1, right, target, flag, result);
                     }
                 }
+                //if the value at the middle of the array is lower than the target , the it need to look into
+                //right side of the array starting from middle 
                 if (array[middle] < target)
                 {
+                    //if the target in greater than middle but lower than the next value after middle ,
+                    //it means it is located between both numbers ,the value is not in the array 
+                    //gets the closest value
                     if (middle < array.Length - 1 && target < array[middle + 1] && flag == true)
                     {
                         GetBinaryClose(array, middle, middle + 1, target);
+                        //after displaying the closer value , returns -1 to indicate it is not found 
                         return -1;
                     }
                     return BinarySearch(array, middle + 1, right, target, flag, result);
                 }
+                //else runs if the value at middle of the array is greater than the target 
+                //search the array starting from left until middle -1
                 else
-                {
+                {   // if target is lower than middle but greated than middle -1 , means it is located between both values
+                    // the value is not found in this array , so display the closest 
                     if (middle > 0 && target > array[middle - 1] && flag == true)
                     {
                         GetBinaryClose(array, middle - 1, middle, target);
+                        //returns -1 to indicate the value isnt found
                         return -1;
                     }
                     return BinarySearch(array, left, middle - 1, target, flag, result);
