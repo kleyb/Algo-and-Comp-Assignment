@@ -7,28 +7,35 @@ using System.IO;
 
     
 class Input
-{   //Create a varible that will be the 'standard' path to look for files
-    private string Path { get; set; } 
+{   //Create a varible that will be the 'static' path to look for files
+    public static string Path { get; set; } 
     
-    //Get the path from the user and passes it to Path
-    public void GetPath()
-    {
-        Console.WriteLine(@"Please indicate the path to the file: (eg 'C:\Users\kleybson\Download' ) ");
-        string path = Console.ReadLine();
-        this.Path = path;
-    }
-
-     public double[] ReadFiles()
+    //Read all files  
+    public double[] ReadFiles()
      {
-        GetPath();
-        Console.WriteLine("Please indicate the name of the files and extersions (eg 'text.txt'): ");
-        string fileName = Console.ReadLine();
-        
-        
-        string[] arrayAsText = File.ReadAllLines(this.Path + fileName);
-        //Convert array to Int    
-        double[] array = Array.ConvertAll(arrayAsText,s => double.TryParse(s,out var x) ? x :-1 );
-        return array;
+        string[] arrayAsText;
+        string fileName;
+        double[] array;
+        while (true)
+        {
+            try
+            {
+                Console.WriteLine("Please indicate the name of the files and extersions (eg 'text.txt'): ");
+                fileName = Console.ReadLine();
+                //Reads all the lines
+                arrayAsText = File.ReadAllLines(Path + fileName);
+                //Convert array to double
+                array = Array.ConvertAll(arrayAsText, s => double.TryParse(s, out var x) ? x : -1);
+                //Return Array
+                return array;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("The file you have selected is invalid , please check if you have entered the right with file" +
+                    "with a '.txt' extension");
+            }
+        }
+            
     }
 }       
 

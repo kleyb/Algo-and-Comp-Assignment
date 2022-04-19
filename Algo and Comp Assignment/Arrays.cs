@@ -7,24 +7,25 @@ using System.Threading.Tasks;
 class Arrays
 {   //Constructor to store the Array values
     private double[] ShareArray { get; set; }
+
     // Declare a new Sorting Obj , no need to declare it on the methods
-    Sorting sorting = new Sorting();
+    private Sorting sorting = new Sorting();
     
     //Gets the Array from the Input class and stores it into ShareArray
     public void GetArray()
     {
         Input array = new Input();
-        this.ShareArray = array.ReadFiles();
+        ShareArray = array.ReadFiles();
     }
     //Passes the Array into the method from Input Class that sorts the array in Asceding order
     public void SortInAscedingOrder()
     {
-        sorting.QuickSort(this.ShareArray);
+        sorting.QuickSort(ShareArray);
     }
     //Passes the array to the method from Input Class that sorts the Array in decending order and stores it on ShareArray
     public void SortInDescendingOrder()
     {
-        this.ShareArray = sorting.Sort(this.ShareArray);
+        ShareArray = sorting.Sort(ShareArray);
     }
     //Display the elements of the array
     public void DisplayArray()
@@ -33,17 +34,29 @@ class Arrays
         {
             Console.Write("{0} " , number);
         }
+        Console.WriteLine("\n");
     }
-    //Display every 10th value from the array statin from index 0
+    //Displays every 10th value from the array statin from index 0
     public void DisplayEvery10()
     {
         Console.WriteLine("Every 10th value: ");
         // Loops for the length of the array 
-        for (int i = 0; i < this.ShareArray.Length; i=i+10)
+        for (int i = 0; i < ShareArray.Length; i=i+10)
         {
-            Console.Write("{0} ",this.ShareArray[i]);
+            Console.Write("{0} ",ShareArray[i]);
         }
-        Console.WriteLine("\b");
+        Console.WriteLine("\n");
+    }
+    //Displays every 50th element 
+    public void DisplayEvery50()
+    {
+        Console.WriteLine("Every 50th value: ");
+        // Loops for the length of the array 
+        for (int i = 0; i < ShareArray.Length; i = i + 50)
+        {
+            Console.Write("{0} ", ShareArray[i]);
+        }
+        Console.WriteLine("\n");
     }
     //Does a linear Search , better when using smaller arrays
     public void SearchLinear()
@@ -60,21 +73,21 @@ class Arrays
             //If input is a valid double
             if (double.TryParse(Console.ReadLine(), out double target))
             {   //iterates through the Array 
-                for (int i = 0; i < this.ShareArray.Length; i++)
+                for (int i = 0; i < ShareArray.Length; i++)
                 {
-                    if (this.ShareArray[i] < target)
+                    if (ShareArray[i] < target)
                     {
-                        templist.Add(this.ShareArray[i]);
+                        templist.Add(ShareArray[i]);
 
                     }
                     //if value searched is found , adds to the list
-                    else if (this.ShareArray[i] == target)
+                    else if (ShareArray[i] == target)
                     {
                         temp.Add(i);
                     }
-                    else if (this.ShareArray[i] > target)
+                    else if (ShareArray[i] > target)
                     {
-                        templist2.Add(this.ShareArray[i]);
+                        templist2.Add(ShareArray[i]);
 
                     }
                 }
@@ -127,7 +140,7 @@ class Arrays
         // Binary Sort needs the array to be sorted , so I call the SortingInAscedingOrder again
         SortInAscedingOrder();
         DisplayArray();
-        Binary(this.ShareArray);
+        Binary(ShareArray);
         static void Binary(double[] array)
         {
             //Gets the input from the user and tries to parse it , if successful stores it into target
@@ -261,5 +274,45 @@ class Arrays
             }
         }
     }
-}
+
+    public void MergeArrays(Arrays array1 , Arrays array2)
+    {
+        array1.SortInAscedingOrder();
+        array2.SortInAscedingOrder();
+        ShareArray = Merge(array1.ShareArray.ToList(), array2.ShareArray.ToList());
+
+        static double[] Merge(List<double> left, List<double> right)
+        {   // creates a new list to store the result of the Sorting and Merging
+            List<double> result = new List<double>();
+            // Loops while both of the arrays contains elements
+            while (left.Any() && right.Any())
+            {   // if the first element of the array 'left' is smaller or equal to the first element of array 'first'
+                if (left.First() <= right.First())
+                {   //adds the first element of the right array into the result array and removes it from the the array
+                    result.Add(left.First());
+                    left.Remove(left.First());
+                }
+                else
+                {   //else add the first element of the left array
+                    result.Add(right.First());
+                    right.Remove(right.First());
+                }
+            }
+            // If any element is left at one of the array , the element is then added into result and removed 
+            while (left.Any())
+            {
+                result.Add(left.First());
+                left.Remove(left.First());
+            }
+            while (right.Any())
+            {
+                result.Add(right.First());
+                right.Remove(right.First());
+            }
+            // Coverts result into an array and returns it 
+            return result.ToArray();
+        }
+    }
+}   
+
 
