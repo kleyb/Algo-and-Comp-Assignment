@@ -4,10 +4,22 @@ Console.WriteLine("Welcome to the Shares Searching and Sorting Application");
 while (true)
 {
     Console.WriteLine(@"Please indicate the path to the file: (eg 'C:\Users\kleybson\Download' ) ");
-    Input.Path = Console.ReadLine();
+    string path = Console.ReadLine();
+    
+    if (string.IsNullOrEmpty(path) || string.IsNullOrWhiteSpace(path))
+    {
+        Console.WriteLine(@"You have not entered a Path. "
+        + @"Please enter your Path (eg 'C:\Users\kleybson\Download' ) and confirm ");
+        Console.WriteLine();
+        continue;
+    }
     Console.WriteLine("Please confirm the path for your file , your won't be able to change it later ," +
-        " your path currently is: {0} , enter 'Yes' to confirm or anything else to change it",Input.Path);
-    if (Console.ReadLine().ToUpper() == "YES") break;
+        " your path currently is: {0} , enter 'Yes' to confirm or anything else to change it", path);
+    if (Console.ReadLine().ToUpper() == "YES")
+    {
+        Input.GetPath(path);
+        break;
+    }
 }
 
 Console.WriteLine("Analyses of 256 length Files: \n");

@@ -8,7 +8,12 @@ using System.IO;
     
 class Input
 {   //Create a varible that will be the 'static' path to look for files
-    public static string Path { get; set; } 
+    private static string Path { get; set; }
+    
+    public static void GetPath(string path)
+    {
+        Path = path;
+    }
     
     //Read all files  
     public double[] ReadFiles()
