@@ -30,7 +30,7 @@ class Arrays
     //Display the elements of the array
     public void DisplayArray()
     {   //Loops through the array and displays the elements 
-        foreach (var number in this.ShareArray)
+        foreach (var number in ShareArray)
         {
             Console.Write("{0} " , number);
         }
@@ -145,28 +145,37 @@ class Arrays
         {
             //Gets the input from the user and tries to parse it , if successful stores it into target
             Console.WriteLine("Please indicate the number you would like to search: ");
-            double.TryParse(Console.ReadLine(), out double target);
-            
-            // Checks wheater the target value inst outside the array range
-            //By check if the value isn't smaller than the first element or greater than the last element in the sorted array
-            if (GetBorderCases(array, target))
-            {   
-                // There will be 2 binary searches running , one will get the first occurence of the targeted value
-                //The second will get the last occurence of the targeted value
-                int left = BinarySearch(array, 0, array.Length - 1, target, true, 0);
-                int right = BinarySearch(array, 0, array.Length - 1, target, false, 0);
-                
-                // Calculated the number of occurences by looking at the difference between indexes 
-                int numberOfOccurences = (right - left) + 1;
-                
-                // The binary searches will return -1 only if the value in not found within the array 
-                if (left == -1 || right == -1)
+            while (true)
+            {
+                if (double.TryParse(Console.ReadLine(), out double target))
                 {
-                    Console.WriteLine("Value {0} not Found", target);
+                    // Checks wheater the target value inst outside the array range
+                    //By check if the value isn't smaller than the first element or greater than the last element in the sorted array
+                    if (GetBorderCases(array, target))
+                    {
+                        // There will be 2 binary searches running , one will get the first occurence of the targeted value
+                        //The second will get the last occurence of the targeted value
+                        int left = BinarySearch(array, 0, array.Length - 1, target, true, 0);
+                        int right = BinarySearch(array, 0, array.Length - 1, target, false, 0);
+
+                        // Calculated the number of occurences by looking at the difference between indexes 
+                        int numberOfOccurences = (right - left) + 1;
+
+                        // The binary searches will return -1 only if the value in not found within the array 
+                        if (left == -1 || right == -1)
+                        {
+                            Console.WriteLine("Value {0} not Found", target);
+                        }
+                        else
+                        {   // Display the number of occurences of the value and its locations
+                            Console.WriteLine("There are {0} occurences of the value {1} , starting at index {2}", numberOfOccurences, target, left);
+                        }
+                    }
+                    break;
                 }
                 else
-                {   // Display the number of occurences of the value and its locations
-                    Console.WriteLine("There are {0} occurences of the value {1} , starting at index {2}", numberOfOccurences, target, left);
+                {
+                    Console.WriteLine("You have entered a invalid value , please make sure you can entered only numbers");
                 }
             }
             // Performs the Binary search with finding the closest value if value in not outside the borders (range) of the Array
