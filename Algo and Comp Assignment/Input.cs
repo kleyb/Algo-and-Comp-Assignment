@@ -17,7 +17,7 @@ class Input
     
     //Read all files  
     public double[] ReadFiles()
-     {
+    {
         string[] arrayAsText;
         string fileName;
         double[] array;
@@ -39,8 +39,7 @@ class Input
                 Console.WriteLine("The file you have selected is invalid , please check if you have entered the right with file" +
                     "with a '.txt' extension");
             }
-        }
-            
+        }            
     }
 }       
 

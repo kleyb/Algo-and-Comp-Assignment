@@ -5,7 +5,7 @@ while (true)
 {
     Console.WriteLine(@"Please indicate the path to the file: (eg 'C:\Users\kleybson\Download' ) ");
     string path = Console.ReadLine();
-    
+
     if (string.IsNullOrEmpty(path) || string.IsNullOrWhiteSpace(path))
     {
         Console.WriteLine(@"You have not entered a Path. "
@@ -44,40 +44,53 @@ SortingAndDisplaying2048(share_3_2048);
 //Step 5
 static void SortingAndDisplaying2048(Arrays array)
 {
-    array.GetArray();
+    Algorithms algorithms = new Algorithms();
+    Input readFiles = new Input();
+
+    array.SetArray(readFiles.ReadFiles());
+    Console.WriteLine("Displaying Usorted Array");
     array.DisplayArray();
-    array.SortInAscedingOrder();
+    algorithms.SortInAscendingOrder(array.GetArrayValue());
+    Console.WriteLine("Displaying Sorted Array in Ascending Order");
     array.DisplayArray();
-    array.SortInDescendingOrder();
+    array.SetArray(algorithms.SortInDescendingOrder(array.GetArrayValue()));
+    Console.WriteLine("Displaying Sorted Array is Descending Order");
     array.DisplayArray();
     array.DisplayEvery50();
-    array.SearchBinary();
+    algorithms.SearchBinary(array.GetArrayValue());
 }
 
 // Steps 1 to 4
 static void SortingAndDisplaying256(Arrays array)
 {
-    array.GetArray();
+    Algorithms algorithms = new Algorithms();
+    Input readFiles = new Input();
+
+    array.SetArray(readFiles.ReadFiles());
+    Console.WriteLine("Displaying Usorted Array");
     array.DisplayArray();
-    array.SortInAscedingOrder();
+    algorithms.SortInAscendingOrder(array.GetArrayValue());
+    Console.WriteLine("Displaying Sorted Array in Ascending Order");
     array.DisplayArray();
-    array.SortInDescendingOrder();
+    array.SetArray(algorithms.SortInDescendingOrder(array.GetArrayValue()));
+    Console.WriteLine("Displaying Sorted Array is Descending Order");
     array.DisplayArray();
     array.DisplayEvery10();
-    array.SearchLinear();
+    algorithms.SearchLinear(array.GetArrayValue());
 }
 
 //Step 6
+Algorithms algorithms = new Algorithms();
 Arrays mergedArrays_256 = new Arrays();
 Arrays mergedArrays_2048 = new Arrays();
 Console.WriteLine("Merging Arrays: share_1_256 & share_3_256");
-mergedArrays_256.MergeArrays(share_1_256, share_3_256);
+mergedArrays_256.SetArray(algorithms.MergeArrays(share_1_256, share_3_256));
 mergedArrays_256.DisplayArray();
 // Step 6.5
 SortingAndDisplaying256(mergedArrays_256);
 
-Console.WriteLine("Merging Arrays: share_1_256 & share_3_256");
-mergedArrays_2048.MergeArrays(share_1_2048, share_3_2048);
+Console.WriteLine("Merging Arrays: share_1_2048 & share_3_2048");
+mergedArrays_2048.SetArray(algorithms.MergeArrays(share_1_2048, share_3_2048));
 mergedArrays_2048.DisplayArray();
 //Step7
 SortingAndDisplaying2048(mergedArrays_2048);
