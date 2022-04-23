@@ -27,9 +27,9 @@ Arrays share_1_256 = new Arrays();
 Arrays share_2_256 = new Arrays();
 Arrays share_3_256 = new Arrays();
 
-SortingAndDisplaying256(share_1_256);
-SortingAndDisplaying256(share_2_256);
-SortingAndDisplaying256(share_3_256);
+SortingAndDisplaying256(share_1_256,true);
+SortingAndDisplaying256(share_2_256,true);
+SortingAndDisplaying256(share_3_256,true);
 
 Console.WriteLine("Analyses of 2048 length Files: \n");
 
@@ -37,36 +37,18 @@ Arrays share_1_2048 = new Arrays();
 Arrays share_2_2048 = new Arrays();
 Arrays share_3_2048 = new Arrays();
 
-SortingAndDisplaying2048(share_1_2048);
-SortingAndDisplaying2048(share_2_2048);
-SortingAndDisplaying2048(share_3_2048);
+SortingAndDisplaying2048(share_1_2048,true);
+SortingAndDisplaying2048(share_2_2048,true);
+SortingAndDisplaying2048(share_3_2048,true);
 
-//Step 5
-static void SortingAndDisplaying2048(Arrays array)
-{
-    Algorithms algorithms = new Algorithms();
-    Input readFiles = new Input();
 
-    array.SetArray(readFiles.ReadFiles());
-    Console.WriteLine("Displaying Usorted Array");
-    array.DisplayArray();
-    algorithms.SortInAscendingOrder(array.GetArrayValue());
-    Console.WriteLine("Displaying Sorted Array in Ascending Order");
-    array.DisplayArray();
-    array.SetArray(algorithms.SortInDescendingOrder(array.GetArrayValue()));
-    Console.WriteLine("Displaying Sorted Array is Descending Order");
-    array.DisplayArray();
-    array.DisplayEvery50();
-    algorithms.SearchBinary(array.GetArrayValue());
-}
 
 // Steps 1 to 4
-static void SortingAndDisplaying256(Arrays array)
+static void SortingAndDisplaying256(Arrays array, bool flag)
 {
     Algorithms algorithms = new Algorithms();
     Input readFiles = new Input();
-
-    array.SetArray(readFiles.ReadFiles());
+    if (flag) array.SetArray(readFiles.ReadFiles());
     Console.WriteLine("Displaying Usorted Array");
     array.DisplayArray();
     algorithms.SortInAscendingOrder(array.GetArrayValue());
@@ -79,18 +61,38 @@ static void SortingAndDisplaying256(Arrays array)
     algorithms.SearchLinear(array.GetArrayValue());
 }
 
+//Step 5
+static void SortingAndDisplaying2048(Arrays array,bool flag)
+{
+    Algorithms algorithms = new Algorithms();
+    Input readFiles = new Input();
+
+    if (flag) array.SetArray(readFiles.ReadFiles());
+    Console.WriteLine("Displaying Usorted Array");
+    array.DisplayArray();
+    algorithms.SortInAscendingOrder(array.GetArrayValue());
+    Console.WriteLine("Displaying Sorted Array in Ascending Order");
+    array.DisplayArray();
+    array.SetArray(algorithms.SortInDescendingOrder(array.GetArrayValue()));
+    Console.WriteLine("Displaying Sorted Array is Descending Order");
+    array.DisplayArray();
+    array.DisplayEvery50();
+    algorithms.SearchBinary(array.GetArrayValue());
+}
+
 //Step 6
 Algorithms algorithms = new Algorithms();
 Arrays mergedArrays_256 = new Arrays();
 Arrays mergedArrays_2048 = new Arrays();
+
 Console.WriteLine("Merging Arrays: share_1_256 & share_3_256");
 mergedArrays_256.SetArray(algorithms.MergeArrays(share_1_256, share_3_256));
 mergedArrays_256.DisplayArray();
 // Step 6.5
-SortingAndDisplaying256(mergedArrays_256);
+SortingAndDisplaying256(mergedArrays_256,false);
 
 Console.WriteLine("Merging Arrays: share_1_2048 & share_3_2048");
 mergedArrays_2048.SetArray(algorithms.MergeArrays(share_1_2048, share_3_2048));
 mergedArrays_2048.DisplayArray();
 //Step7
-SortingAndDisplaying2048(mergedArrays_2048);
+SortingAndDisplaying2048(mergedArrays_2048,false);
