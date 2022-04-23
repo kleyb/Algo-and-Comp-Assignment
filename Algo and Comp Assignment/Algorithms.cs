@@ -333,7 +333,7 @@ class Algorithms
     public double[] MergeArrays(Arrays array1, Arrays array2)
     {
         //return the merged array 
-        return Merge(array1.GetArrayValue().ToList(), array2.GetArrayValue().ToList());
+         return Merge(array1.GetArrayValue().ToList(), array2.GetArrayValue().ToList());
         //Using the Merge Portion of the SortMerge Algorithm to merge 2 arrays
         static double[] Merge(List<double> left, List<double> right)
         {   // creates a new list to store the result of the Merging
