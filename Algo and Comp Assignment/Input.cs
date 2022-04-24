@@ -18,9 +18,12 @@ class Input
     //Read all files  
     public double[] ReadFiles()
     {
-        string[] arrayAsText;
-        string fileName;
+        // Create the varible that will be used to store the Array as a text of after being converted 
+        string[] arrayAsText;        
         double[] array;
+        // The fileName variable will store the name the user has given his File
+        string fileName;
+        // Use a loop to keep trying to get the right name and extension of the files , the loop ends when the array is returned
         while (true)
         {
             try
@@ -35,7 +38,7 @@ class Input
                 return array;
             }
             catch (Exception)
-            {
+            {   // If the use provide the name of a file that doesnt exist or extersion displays an error message 
                 Console.WriteLine("The file you have selected is invalid , please check if you have entered the right with file" +
                     "with a '.txt' extension");
             }

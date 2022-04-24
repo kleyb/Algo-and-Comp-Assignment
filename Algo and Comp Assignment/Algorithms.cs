@@ -196,7 +196,7 @@ class Algorithms
             {
                 if (double.TryParse(Console.ReadLine(), out double target))
                 {
-                    // Checks wheater the target value inst outside the array range
+                    // Checks wheater the target value isn't outside the array range
                     //By check if the value isn't smaller than the first element or greater than the last element in the sorted array
                     if (GetBorderCases(array, target))
                     {
@@ -310,6 +310,7 @@ class Algorithms
             }
         }
     }
+    //Get the borders cases 
     private static bool GetBorderCases(double[] array, double target)
     {
         // Gets the last element position
@@ -329,7 +330,7 @@ class Algorithms
         // if none of the if statments are met , then returns a true
         return true;
     }
-
+    // Uses the Merge Part of the MergeSort algorithm modified to merge Arrays
     public double[] MergeArrays(Arrays array1, Arrays array2)
     {
         //return the merged array 

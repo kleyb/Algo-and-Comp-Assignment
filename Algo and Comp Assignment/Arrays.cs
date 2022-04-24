@@ -8,7 +8,7 @@ class Arrays
 {   //Constructor to store the Array
     private double[] FileArray { get; set; }
     
-    //Gets the Array from the Input class and stores it into FileArray
+    //Gets the Array from the user and stores it into FileArray
     public void SetArray(double[] array )
     {
         FileArray = array;
