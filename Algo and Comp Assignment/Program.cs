@@ -1,6 +1,8 @@
 ﻿
 // See https://aka.ms/new-console-template for more information
 
+//Created by Kleybson Sousa , using Visual studio 2022 .Net 6.0
+
 //Displays message of welcome to the user
 Console.WriteLine("Welcome to the Shares Searching and Sorting Application");
 
